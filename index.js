@@ -1,6 +1,7 @@
 const express = require("express");
 const Sequelize = require("sequelize");
 const app = express();
+const cors = require("cors");
 
 app.use(express.json());
 
@@ -28,7 +29,12 @@ const Book = sequelize.define("book", {
   },
 });
 
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
 sequelize.sync();
+
 
 app.get("/books", (req, res) => {
   Book.findAll()
